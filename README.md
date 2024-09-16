@@ -5,3 +5,6 @@ Here is my code solving questions from week 3.
 
 I used SQL Server.
 
+
+![foodie-fi](https://github.com/user-attachments/assets/e86cb854-7240-4446-b346-fb57ce8b58ff)
+
