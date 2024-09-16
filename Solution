@@ -1,0 +1,39 @@
+B. Data Analysis Questions
+
+1. How many customers has Foodie-Fi ever had?
+```sql
+SELECT COUNT(DISTINCT customer_id) as customer_count
+FROM subscriptions
+```
+
+-- 2. What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
+
+WITH Month_distribution AS
+(SELECT
+	CASE WHEN start_date BETWEEN '2020-01-01' AND '2020-01-31' THEN '1. January'
+		 WHEN start_date BETWEEN '2020-02-01' AND '2020-02-29' THEN '2. February'
+		 WHEN start_date BETWEEN '2020-03-01' AND '2020-03-31' THEN '3. March'
+		 WHEN start_date BETWEEN '2020-04-01' AND '2020-04-30' THEN '4. April'
+		 WHEN start_date BETWEEN '2020-05-01' AND '2020-05-31' THEN '5. May'
+		 WHEN start_date BETWEEN '2020-06-01' AND '2020-06-30' THEN '6. June'
+		 WHEN start_date BETWEEN '2020-07-01' AND '2020-07-31' THEN '7. July'
+		 WHEN start_date BETWEEN '2020-08-01' AND '2020-08-31' THEN '8. August'
+		 WHEN start_date BETWEEN '2020-09-01' AND '2020-09-30' THEN '9. September'
+		 WHEN start_date BETWEEN '2020-10-01' AND '2020-10-31' THEN '10. October'
+		 WHEN start_date BETWEEN '2020-11-01' AND '2020-11-30' THEN '11. November'
+		 WHEN start_date BETWEEN '2020-12-01' AND '2020-12-31' THEN '12. December'
+	ELSE 'O'
+	END AS trials_by_month
+FROM subscriptions s
+LEFT JOIN plans p ON s.plan_id = p.plan_id
+WHERE plan_name = 'trial')
+
+SELECT*, count(trials_by_month) AS trials_count
+FROM Month_distribution
+GROUP BY trials_by_month
+ORDER BY 2 desc
+
+SELECT  DATETRUNC(month, start_date) as month, COUNT(customer_id) as trial_starts
+FROM subscriptions
+WHERE plan_id = 0
+GROUP BY DATETRUNC(month, start_date)
