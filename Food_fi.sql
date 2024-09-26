@@ -1,7 +1,5 @@
-
-
-
 --                   A. Customer Journey
+
 --  Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customers onboarding journey.
 --  Try to keep it as short as possible - you may also want to run some sort of join to make your explanations a bit easier!
 
@@ -10,12 +8,8 @@
   LEFT JOIN plans ON s.plan_id = plans.plan_id
   WHERE customer_id IN (1,2,11,13,15,16, 18,19)
   
-
-
-
-
  
----------------- B. Data Analysis Questions
+--                   B. Data Analysis Questions
 
 -- 1. How many customers has Foodie-Fi ever had?
 
@@ -56,7 +50,7 @@ WHERE plan_id = 0
 GROUP BY DATETRUNC(month, start_date)
 
 
--- What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
+-- 3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
 
 SELECT plan_name, COUNT(plan_name) as plan_count
 FROM subscriptions s
@@ -64,7 +58,6 @@ LEFT JOIN plans p on s.plan_id = p.plan_id
 WHERE start_date > '2020-12-31'
 GROUP BY plan_name
 
- 
 
  -- 4. What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
  
