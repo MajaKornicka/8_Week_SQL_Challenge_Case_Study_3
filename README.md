@@ -1,6 +1,6 @@
 # 8 Week Challenge - Week 3 🥪
 
-Here's my attempt to solve this challange. Source of data: https://8weeksqlchallenge.com/case-study-3/
+Here's my attempt to solve this challenge. Source of data: https://8weeksqlchallenge.com/case-study-3/
 
 <p align="center">
 
